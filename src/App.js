@@ -1,4 +1,5 @@
 import './style.scss';
+import { ReplyIcon, RetweetIcon, LikeIcon, ShareIcon, VerifiedIcon } from './icons';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <div>
           <div className='name'>
             Khazar Guluzade
+            <VerifiedIcon width="19" height="19" />
           </div>
           <div className='username'>
             @khazarglzd
@@ -16,6 +18,31 @@ function App() {
       </div>
       <div className='tweet-content'>
         <p> This is a fake tweet written for the test. </p>
+      </div>
+      <div className="tweet-stats">
+        <span>
+          <b>240</b> Retweet
+        </span>
+        <span>
+          <b>77</b> Alinti Tweetler
+        </span>
+        <span>
+          <b>120</b> Begeni
+        </span>
+      </div>
+      <div className="tweet-actions">
+        <span>
+          <ReplyIcon />
+        </span>
+        <span>
+          <RetweetIcon />
+        </span>
+        <span>
+          <LikeIcon />
+        </span>
+        <span>
+          <ShareIcon />
+        </span>
       </div>
     </div>
   );

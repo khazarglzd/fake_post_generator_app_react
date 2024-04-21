@@ -34,6 +34,12 @@ body {
     .name {
       color: #fff;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      height: 19px;
+      svg {
+        margin-left: 3px;
+      }
     }
     .username {
       color: #6e767d;
@@ -45,6 +51,32 @@ body {
       font-size: 23px;
       line-height: 28px;
       color: #fff;
+      overflow: hidden;
+      span {
+        color: #1da1f2;
+      }
     }
+  }
+  &-stats {
+    height: 53px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #6e767d;
+    border-top: 1px solid #2f3336;
+    b {
+      color: #fff;
+    }
+    span:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  &-actions {
+    height: 48px;
+    display: flex;
+    border-top: 1px solid #2f3336;
+    color: #fff;
+    align-items: center;
+    justify-content: space-around;
   }
 }
