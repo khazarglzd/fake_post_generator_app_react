@@ -23,6 +23,20 @@ function App() {
     return tweet;
   };
 
+  const formatNumber = number => {
+    if (!number) {
+      number = 0;
+    }
+    if (number < 1000) {
+      return number;
+    }
+    number /= 1000;
+    number = String(number).split('.');
+
+    return (
+      number[0] + (number[1] > 100 ? ',' + number[1].slice(0, 1) + ' B' : ' B')
+    );
+  };
 
   return (
     <>
@@ -30,32 +44,63 @@ function App() {
         <p>Tweet Settings</p>
         <ul>
           <li>
+            <label>Name Surname:</label>
             <input
               type="text"
               className="input"
-              placeholder='Name Surname'
               value={name}
               onChange={e => setName(e.target.value)}
             />
           </li>
           <li>
+            <label>Username:</label>
             <input
               type="text"
               className="input"
-              placeholder='userName'
               value={username}
               onChange={e => setUsername(e.target.value)}
             />
           </li>
           <li>
-            <label>Tweet</label>
+            <label>Tweet:</label>
             <textarea
               class="textarea"
-              maxLength="290"
+              maxLength="390"
               value={tweet}
               onChange={e => setTweet(e.target.value)}
             />
           </li>
+          <li>
+            <label>Total Retweets:</label>
+            <input
+              type="number"
+              className="input"
+              value={retweets}
+              onClick={e => setRetweets("")}
+              onChange={e => setRetweets(e.target.value)}
+            />
+          </li>
+          <li>
+            <label>Total Quote Tweets:</label>
+            <input
+              type="number"
+              className="input"
+              value={quoteTweets}
+              onClick={e => setQuoteTweets("")}
+              onChange={e => setQuoteTweets(e.target.value)}
+            />
+          </li>
+          <li>
+            <label>Total Likes:</label>
+            <input
+              type="number"
+              className="input"
+              value={likes}
+              onClick={e => setLikes("")}
+              onChange={e => setLikes(e.target.value)}
+            />
+          </li>
+          <button>Create Tweet</button>
         </ul>
       </div>
       <div className='tweet-container'>
@@ -73,23 +118,23 @@ function App() {
             </div>
           </div>
           <div className='tweet-content'>
-            <p>             <p
+            <p
               dangerouslySetInnerHTML={{
                 __html:
                   (tweet && tweetFormat(tweet)) ||
                   'Here is the default tweet'
               }}
-            /></p>
+            />
           </div>
           <div className="tweet-stats">
             <span>
-              <b>{retweets}</b> Retweet
+              <b>{formatNumber(retweets)}</b> Retweet
             </span>
             <span>
-              <b>{quoteTweets}</b> Quote Tweets
+              <b>{formatNumber(quoteTweets)}</b> Quote Tweets
             </span>
             <span>
-              <b>{likes}</b> Likes
+              <b>{formatNumber(likes)}</b> Likes
             </span>
           </div>
           <div className="tweet-actions">
