@@ -8,8 +8,38 @@
     Arial, sans-serif !important;
 }
 
+html,
 body {
+  height: 100%;
   background: #000;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tweet-container {
+  padding: 450px;
+}
+
+.tweet-settings {
+  max-width: 340px;
+  width: 340px;
+  min-width: 340px;
+  color: #fff;
+  border-right: 1px solid #2f3336;
+  height: 100%;
+  padding: 25px;
+  overflow: auto;
+  h3 {
+    font-size: 24px;
+    font-weight: normal;
+    border-bottom: 1px solid #2f3336;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .tweet {
