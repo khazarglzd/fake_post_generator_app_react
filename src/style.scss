@@ -67,6 +67,14 @@ button {
       margin-bottom: 20px;
     }
   }
+  input::placeholder {
+    opacity: 0.7;
+  }
+
+  .textarea {
+    opacity: 0.7;
+  }
+
   .input {
     width: 100%;
     background: transparent;
