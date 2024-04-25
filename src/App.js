@@ -1,10 +1,13 @@
 import './style.scss';
 import { ReplyIcon, RetweetIcon, LikeIcon, ShareIcon, VerifiedIcon } from './icons';
-import { useState } from "react"
+import { useState, createRef, useEffect } from "react"
 import { AvatarLoader } from './loaders';
+import { useScreenshot } from 'use-react-screenshot'
 
 function App() {
 
+  const tweetRef = createRef(null);
+  const downloadRef = createRef();
   const [name, setName] = useState();
   const [username, setUsername] = useState();
   const [isVerified, setIsVerified] = useState();
@@ -15,6 +18,15 @@ function App() {
   const [retweets, setRetweets] = useState();
   const [quoteTweets, setQuoteTweets] = useState();
   const [likes, setLikes] = useState();
+  const [image, takeScreenshot] = useScreenshot();
+  const getImage = () => takeScreenshot(tweetRef.current);
+
+
+  useEffect(() => {
+    if (image) {
+      downloadRef.current.click();
+    }
+  }, [image]);
 
   const tweetFormat = tweet => {
     tweet = tweet
@@ -23,6 +35,7 @@ function App() {
       .replace(/(https?:\/\/[\w\.\/]+)/, '<span>$1</span>')
     return tweet;
   };
+
 
   const avatarHandle = e => {
     const file = e.target.files[0];
@@ -83,7 +96,7 @@ function App() {
             />
           </li>
           <li>
-            <label>Avatar</label>
+            <label>Avatar:</label>
             <input type="file" className="input" onChange={avatarHandle} />
           </li>
           <li>
@@ -116,11 +129,17 @@ function App() {
               onChange={e => setLikes(e.target.value)}
             />
           </li>
-          <button>Create Tweet</button>
+          <button onClick={getImage}>Download Tweet Card</button>
+          <div className="download-url">
+            {image && (
+              <a ref={downloadRef} href={image} download="tweet.png">
+              </a>
+            )}
+          </div>
         </ul>
       </div>
       <div className='tweet-container'>
-        <div className="tweet">
+        <div className="tweet" ref={tweetRef}>
           <div className='tweet-author'>
             {(avatar && <img src={avatar} />) || <AvatarLoader />}
             <div>
