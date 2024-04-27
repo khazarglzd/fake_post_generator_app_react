@@ -2,7 +2,9 @@ import './style.scss';
 import { ReplyIcon, RetweetIcon, LikeIcon, ShareIcon, VerifiedIcon } from './icons';
 import { useState, createRef, useEffect } from "react"
 import { AvatarLoader } from './loaders';
-import { useScreenshot } from 'use-react-screenshot'
+import { useScreenshot } from 'use-react-screenshot';
+import { language } from './language';
+
 
 function App() {
 
@@ -20,7 +22,14 @@ function App() {
   const [likes, setLikes] = useState();
   const [image, takeScreenshot] = useScreenshot();
   const getImage = () => takeScreenshot(tweetRef.current);
+  const [langText, setLangText] = useState();
+  const [lang, setLang] = useState('tr');
 
+
+
+  useEffect(() => {
+    setLangText(language[lang]);
+  }, [lang]);
 
   useEffect(() => {
     if (image) {
@@ -64,10 +73,10 @@ function App() {
   return (
     <>
       <div className='tweet-settings'>
-        <p>Tweet Settings</p>
+        <p>{langText?.settings}</p>
         <ul>
           <li>
-            <label>Name Surname:</label>
+            <label>{langText?.name}</label>
             <input
               type="text"
               className="input"
@@ -77,7 +86,7 @@ function App() {
             />
           </li>
           <li>
-            <label>Username:</label>
+            <label>{langText?.username}</label>
             <input
               type="text"
               className="input"
@@ -100,7 +109,7 @@ function App() {
             <input type="file" className="input" onChange={avatarHandle} />
           </li>
           <li>
-            <label>Total Retweets:</label>
+            <label>{langText?.retweets}</label>
             <input
               type="number"
               className="input"
@@ -110,7 +119,7 @@ function App() {
             />
           </li>
           <li>
-            <label>Total Quote Tweets:</label>
+            <label>{langText?.quoteTweets}</label>
             <input
               type="number"
               className="input"
@@ -120,7 +129,7 @@ function App() {
             />
           </li>
           <li>
-            <label>Total Likes:</label>
+            <label>{langText?.likes}</label>
             <input
               type="number"
               className="input"
@@ -129,7 +138,7 @@ function App() {
               onChange={e => setLikes(e.target.value)}
             />
           </li>
-          <button onClick={getImage}>Download Tweet Card</button>
+          <button onClick={getImage}>{langText?.create}</button>
           <div className="download-url">
             {image && (
               <a ref={downloadRef} href={image} download="tweet.png">
@@ -139,6 +148,20 @@ function App() {
         </ul>
       </div>
       <div className='tweet-container'>
+        <div className="app-language">
+          <span
+            onClick={() => setLang('tr')}
+            className={lang === 'tr' && 'active'}
+          >
+            Türkçe
+          </span>
+          <span
+            onClick={() => setLang('en')}
+            className={lang === 'en' && 'active'}
+          >
+            English
+          </span>
+        </div>
         <div className="tweet" ref={tweetRef}>
           <div className='tweet-author'>
             {(avatar && <img src={avatar} />) || <AvatarLoader />}

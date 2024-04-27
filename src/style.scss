@@ -16,13 +16,13 @@ body {
 }
 
 p {
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   font-size: 24px;
 }
 
 label {
   color: #1da1f2;
-  font-size: 15px;
+  font-size: 18px;
   display: block;
 }
 
@@ -87,6 +87,7 @@ button {
       border-color: #4e555a;
     }
   }
+
   .textarea {
     width: 100%;
     height: 120px;
@@ -172,5 +173,20 @@ button {
     color: #fff;
     align-items: center;
     justify-content: space-around;
+  }
+}
+
+.app-language {
+  color: rgba(#fff, 0.5);
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  span {
+    margin: 0 15px;
+    cursor: pointer;
+    &.active {
+      color: #fff;
+    }
   }
 }
