@@ -7,6 +7,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif !important;
   outline: 0;
+  color: #fff;
 }
 
 html,
@@ -177,16 +178,21 @@ button {
 }
 
 .app-language {
-  color: rgba(#fff, 0.5);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 14px;
   text-align: center;
-  width: 100%;
   padding: 10px 0;
-  span {
-    margin: 0 15px;
-    cursor: pointer;
-    &.active {
-      color: #fff;
-    }
+  button {
+    background-color: #4e555a;
+    width: 40px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+
+  button:focus {
+    background-color: #1da1f2;
+    transition: 300ms;
   }
 }

@@ -73,7 +73,20 @@ function App() {
   return (
     <>
       <div className='tweet-settings'>
-        <p>{langText?.settings}</p>
+        <div className="app-language">
+          <p>{langText?.settings}</p>
+          <div className='button-area'>
+            <button onClick={() => setLang('tr')}
+              className="tr-button">
+              Tr
+            </button>
+            <button
+              onClick={() => setLang('en')}
+            >
+              Eng
+            </button>
+          </div>
+        </div>
         <ul>
           <li>
             <label>{langText?.name}</label>
@@ -148,20 +161,6 @@ function App() {
         </ul>
       </div>
       <div className='tweet-container'>
-        <div className="app-language">
-          <span
-            onClick={() => setLang('tr')}
-            className={lang === 'tr' && 'active'}
-          >
-            Türkçe
-          </span>
-          <span
-            onClick={() => setLang('en')}
-            className={lang === 'en' && 'active'}
-          >
-            English
-          </span>
-        </div>
         <div className="tweet" ref={tweetRef}>
           <div className='tweet-author'>
             {(avatar && <img src={avatar} />) || <AvatarLoader />}
